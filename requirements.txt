@@ -161,3 +161,4 @@ wrapt==1.13.3
 yarg==0.1.9
 yfinance==0.2.18
 zipp==3.7.0
+streamlit
