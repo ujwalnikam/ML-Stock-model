@@ -169,14 +169,14 @@ if st.button("Predict"):
     # Reshape the Input as a 3D (number of samples, Time Steps, Features)
     X_data=np.array(X_samples)
     X_data=X_data.reshape(X_data.shape[0],X_data.shape[1], 1)
-    print('\n#### Input Data shape ####')
-    print(X_data.shape)
+    #print('\n#### Input Data shape ####')
+    #print(X_data.shape)
     
     # We do not reshape y as a 3D data  as it is supposed to be a single column only
     y_data=np.array(y_samples)
     y_data=y_data.reshape(y_data.shape[0], 1)
-    print('\n#### Output Data shape ####')
-    print(y_data.shape)
+    #print('\n#### Output Data shape ####')
+    #print(y_data.shape)
 
     # Choosing the number of testing data records
     TestingRecords=5
@@ -188,34 +188,27 @@ if st.button("Predict"):
     y_test=y_data[-TestingRecords:]
     
     ############################################
-    
-    # Printing the shape of training and testing
-    print('\n#### Training Data shape ####')
-    print(X_train.shape)
-    print(y_train.shape)
-    print('\n#### Testing Data shape ####')
-    print(X_test.shape)
-    print(y_test.shape)
+   
 
     # Defining Input shapes for LSTM
     TimeSteps=X_train.shape[1]
     TotalFeatures=X_train.shape[2]
-    print("Number of TimeSteps:", TimeSteps)
-    print("Number of Features:", TotalFeatures)
+    #print("Number of TimeSteps:", TimeSteps)
+    #print("Number of Features:", TotalFeatures)
 
     # Making predictions on test data
     predicted_Price = regressor.predict(X_test)
     predicted_Price = DataScaler.inverse_transform(predicted_Price)
-    print('#### Predicted Prices ####')
-    print(predicted_Price)
+    #print('#### Predicted Prices ####')
+    #print(predicted_Price)
 
     # Getting the original price values for testing data
     original=y_test
     original=DataScaler.inverse_transform(y_test)
-    print('\n#### Original Prices ####')
-    print(original)
+    #print('\n#### Original Prices ####')
+    #print(original)
     Accuracy = str(100 - (100*(abs(original-predicted_Price)/original)).mean().round(2))
-    print("Accuracy "+Accuracy)
+    #print("Accuracy "+Accuracy)
     st.text("Accuracy : "+Accuracy)
 
         # Making predictions on test data
@@ -238,7 +231,7 @@ if st.button("Predict"):
 
     # Generating the prices in original scale
     Next5DaysPrice = DataScaler.inverse_transform(Next5DaysPrice)
-    print('Next 5 days',Next5DaysPrice)
+    #print('Next 5 days',Next5DaysPrice)
     
     Next5DaysPrice.shape = (5,1)
     newdata = list(FullData[-5:])+list(Next5DaysPrice)
@@ -278,4 +271,4 @@ if st.button("Predict"):
 
     
 ##### check for run successfully
-print('hello') 
+#print('hello') 
